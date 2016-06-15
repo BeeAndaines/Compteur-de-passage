@@ -18,3 +18,19 @@ quand l’abeille reste devant le détecteur, le faisceau est coupé (état 0)
 et plusieurs passages sont comptabilisés. 
 Pour y remédier, nous enregistrerons le passage seulement quand le détecteur ne détecte plus rien 
 (retour à l’état 1).
+
+Nous utilisons un multiplexeur pour compter les entrées et sorties sur plusieurs portes en même temps.
+Analog/Digital MUX Breakout - CD74HC4067
+Il permet de connecter 16 detecteurs IR, soit 8 portes. Il a 4 sorties digitales (pour repérer l'entrée en base 4) et une sortie SIG à relier à un port analogique.
+
+Nous utilisons une structure (struct)  à laquelle nous affectons des données qui seront utilisées pour détecter les entrées et sorties de chaque porte:
+struct Porte {
+    int  pinsortie;    //c'est pour indiquer le N°d'entrée sur le mux 
+    int  pinentree;
+    long tempsLectureEntree; //enregistre l'heure de passage (equivalent du chronoA)
+    long tempsLectureSortie; //chronoB
+    int  lectureEntree; //lecture de la valeur sur le pinentrée = capteur coté entrée
+    int  lectureSortie; //lecture de la valeur sur le capteur coté sortie
+    int  compteurEntree; //c'est l'équivalent du count A qui se déclenche quand on coupe le faisceau, qui se remet à 0 quand le faisceau n'est plus coupé et qui compte 1 passage, 
+    int  compteurSortie; //countB
+} portes[nbPortes];
