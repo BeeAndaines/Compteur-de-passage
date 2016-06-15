@@ -1,4 +1,4 @@
-le but est de comptabiliser le nombre d'entrées et de sorties des abeilles de la ruche afin d'être prévenu d'un essaimage
+Le but est de comptabiliser le nombre d'entrées et de sorties des abeilles de la ruche afin d'être prévenu d'un essaimage.
 Pour cela : deux capteurs IR sont placés à chaque porte de la ruche, ils permettent à l'aide d'arduino de compter les passages et de distinguer les entrées des sorties. 
 
 # Compteur-de-passage, detecteur IR Infrared reflective Switch IR Barrier Line Track sensor TCRT5000 
