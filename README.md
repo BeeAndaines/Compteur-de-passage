@@ -28,3 +28,6 @@ Nous utilisons une structure (struct)  à laquelle nous affectons des données q
     tempsLectureEntree et tempsLectureSortie pour enregistrer l'heure de passage,
     lectureEntree et lectureSortie pour lire la valeur sur le pinentrée = capteur coté entrée ou sur le capteur coté sortie,
     compteurEntree et compteurSortie qui se déclenchent quand on coupe le faisceau, qui se remettent à 0 quand le faisceau n'est plus coupé et qui comptent 1 passage.
+
+Nous comptabilisons aussi des erreurs si un seul capteur est déclenché et pas l'autre : une abeille hésite à entrer ou sortir, ou si un capteur reste déclenché trop longtemps, ce qui peut indiquer une abeille stationnant dans la porte, ou une sortie d'abeilles à la queue leu-leu, ce qui peut se produire lors d'un essaimage.
+Chaque entrée, sortie et erreur est enregistrée avec la date précise sur SD grace à une horloge RTC et un lecteur de carte SD
