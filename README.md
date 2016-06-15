@@ -1,8 +1,8 @@
 Le but est de comptabiliser le nombre d'entrées et de sorties des abeilles de la ruche afin d'être prévenu d'un essaimage.
 Pour cela : deux capteurs IR sont placés à chaque porte de la ruche, ils permettent à l'aide d'arduino de compter les passages et de distinguer les entrées des sorties. 
 
-# Compteur-de-passage, detecteur IR Infrared reflective Switch IR Barrier Line Track sensor TCRT5000 
-on observe un changement de tension à chaque fois que quelque chose passe devant. 
+# Compteur-de-passage, detecteur IR Infrared reflective Switch IR Barrier Line Track sensor TCRT5000.
+On observe un changement de tension à chaque fois que quelque chose passe devant. 
 On a la possibilité d’enregistrer une tension en analogique 
 (1023 quand rien ne perturbe le faisceau, valeur inférieure quand le faisceau est coupé par un passage d’abeille)
 ou en digital (mesure 1 quand rien ne coupe le faisceau, 0 quand le faisceau est coupé). 
@@ -21,16 +21,10 @@ Pour y remédier, nous enregistrerons le passage seulement quand le détecteur n
 
 Nous utilisons un multiplexeur pour compter les entrées et sorties sur plusieurs portes en même temps.
 Analog/Digital MUX Breakout - CD74HC4067
-Il permet de connecter 16 detecteurs IR, soit 8 portes. Il a 4 sorties digitales (pour repérer l'entrée en base 4) et une sortie SIG à relier à un port analogique.
+Il permet de connecter 16 detecteurs IR, soit 8 portes. Il a 4 sorties digitales vers Arduino (pour repérer les 16 entrées detecteurs en base 4) et une sortie SIG (qui transmet la valeur du détecteur) à relier à un port analogique.
 
 Nous utilisons une structure (struct)  à laquelle nous affectons des données qui seront utilisées pour détecter les entrées et sorties de chaque porte:
-struct Porte {
-    int  pinsortie;    //c'est pour indiquer le N°d'entrée sur le mux 
-    int  pinentree;
-    long tempsLectureEntree; //enregistre l'heure de passage (equivalent du chronoA)
-    long tempsLectureSortie; //chronoB
-    int  lectureEntree; //lecture de la valeur sur le pinentrée = capteur coté entrée
-    int  lectureSortie; //lecture de la valeur sur le capteur coté sortie
-    int  compteurEntree; //c'est l'équivalent du count A qui se déclenche quand on coupe le faisceau, qui se remet à 0 quand le faisceau n'est plus coupé et qui compte 1 passage, 
-    int  compteurSortie; //countB
-} portes[nbPortes];
+    pinsortie et pinentree pour indiquer le N°d'entrée des 2 détecteurs sur le mux,
+    tempsLectureEntree et tempsLectureSortie pour enregistrer l'heure de passage,
+    lectureEntree et lectureSortie pour lire la valeur sur le pinentrée = capteur coté entrée ou sur le capteur coté sortie,
+    compteurEntree et compteurSortie qui se déclenchent quand on coupe le faisceau, qui se remettent à 0 quand le faisceau n'est plus coupé et qui comptent 1 passage.
