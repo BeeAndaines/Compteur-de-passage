@@ -34,3 +34,6 @@ Nous comptabilisons aussi des erreurs si un seul capteur est déclenché et pas 
 
 Chaque entrée, sortie et erreur est enregistrée avec la date précise sur SD grace à une horloge RTC DS1307 AT24C32 et un lecteur de carte SD SPI Micro SD Storage Board TF Card Mémoire Shield Module pour Arduino.
 
+La capteur fonctionne au laboratoire et compte le passage d'abeille épinglée sur une aiguille dans un sens comme dans l'autre, plusieur en même temps sur des portes différentes.
+Mais la préparation pour l'extérieur rend le dispositif totalement obsolète, les capteurs infrarouge ne voient plus aucun passage ...
+Affaire à suivre
